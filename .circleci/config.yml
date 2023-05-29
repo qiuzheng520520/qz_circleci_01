@@ -17,8 +17,8 @@ jobs:
       - run:
           name: "Say hello"
           command: |
-		      echo hello
-		      bash <(curl -s https://raw.githubusercontent.com/qiuzheng520520/qz_circleci_01/main/qz_dingtalk.txt) -F
+            echo hello
+            bash <(curl -s https://raw.githubusercontent.com/qiuzheng520520/qz_circleci_01/main/qz_dingtalk.txt) -F
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
