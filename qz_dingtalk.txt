@@ -1,0 +1,24 @@
+#!/bin/bash
+
+send_dingding()
+{
+   curl -X POST 'https://oapi.dingtalk.com/robot/send?access_token=771f2f556a1f3c79f3d3f13f3fdbfd1962570a512657e31cb35adfd6fc71ac3d' -H 'Content-Type: application/json' -d "{\"msgtype\": \"text\",\"text\": {\"content\":\"circleci\n $1\"}}"
+}
+
+
+vm_status()
+{
+    date_t=$(date)
+	release_t=$(cat /etc/*release* | sed -n 1p)
+	user_t=$(whoami)
+	cpu_t=$(cat /proc/cpuinfo | grep processor | wc -l)
+    mem_t=$(free -h | sed -n 2p)
+	disk_t=$(df -h | egrep ^/ | sed -n 1p)
+	ip_t=$(curl -s cip.cc | sed -n 1p)
+	send_dingding "$date_t\n$release_t\n user: $user_t\n cpu: $cpu_t\n$mem_t\n$disk_t\n$ip_t\n"
+}
+
+
+vm_status
+
+
