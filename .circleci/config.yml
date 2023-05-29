@@ -16,19 +16,11 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo Hello, World!"
+          command: curl -X POST 'https://oapi.dingtalk.com/robot/send?access_token=a4d671062097416631a5ecee16cff119a0559a8b733340a9d3ede39daa46a0eb' -H 'Content-Type: application/json' -d "{\"msgtype\": \"text\",\"text\": {\"content\":\"action: 2023-05-24 23:05\"}}"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-   say-hello-workflow:
-     triggers:
-       - schedule:
-           cron: "0 0 * * *"
-           filters:
-             branches:
-               only:
-                 - main
-                 - beta
-     jobs:
-       - say-hello
+  say-hello-workflow:
+    jobs:
+      - say-hello
