@@ -20,11 +20,16 @@ jobs:
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
+
 workflows:
-  version: 2
-  say-hello-workflow:
-    triggers:
+   nightly:
+     triggers:
        - schedule:
            cron: "0 0 * * *"
-    jobs:
-      - say-hello
+           filters:
+             branches:
+               only:
+                 - main
+                 - beta
+     jobs:
+       - say-hello
