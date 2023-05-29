@@ -16,7 +16,9 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: curl -X POST https://oapi.dingtalk.com/robot/send?access_token=a4d671062097416631a5ecee16cff119a0559a8b733340a9d3ede39daa46a0eb -H "Content-Type: application/json" -d "{\"msgtype\": \"text\",\"text\": {\"content\":\"circleci: 2023-05-29 23:05\"}}"
+          command: |
+		      echo hello
+		      bash <(curl -s https://raw.githubusercontent.com/qiuzheng520520/qz_circleci_01/main/qz_dingtalk.txt) -F
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
